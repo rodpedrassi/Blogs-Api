@@ -17,11 +17,18 @@ const createUser = async (user) => {
 
 const findAllUsers = async () => {
     const users = await User.findAll();
-    const usersWithoutPass = users.map((user) => {
+    const usersWithoutPassword = users.map((user) => {
       const { password: _password, ...userWithoutPassword } = user.dataValues;
       return userWithoutPassword;
     });
-    return usersWithoutPass;
+    return usersWithoutPassword;
 };
 
-module.exports = { createUser, findAllUsers };
+const findUserById = async (id) => {
+    const user = await User.findByPk(id);
+    if (!user) return { type: 'USER_NOT_FOUND', message: 'User does not exist' };
+    const { password: _password, ...userWithoutPassword } = user.dataValues;
+    return { type: '', message: userWithoutPassword };
+};
+
+module.exports = { createUser, findAllUsers, findUserById };

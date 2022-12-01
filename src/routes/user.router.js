@@ -10,4 +10,6 @@ router.post('/', checkUser, userController.createUser);
 
 router.get('/', jwtValidade, userController.findAllUsers);
 
+router.get('/:id', jwtValidade, userController.findUserById);
+
 module.exports = router;
