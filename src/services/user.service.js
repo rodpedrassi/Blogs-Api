@@ -15,4 +15,13 @@ const createUser = async (user) => {
     return { token };
 };
 
-module.exports = { createUser };
+const findAllUsers = async () => {
+    const users = await User.findAll();
+    const usersWithoutPass = users.map((user) => {
+      const { password: _password, ...userWithoutPassword } = user.dataValues;
+      return userWithoutPassword;
+    });
+    return usersWithoutPass;
+};
+
+module.exports = { createUser, findAllUsers };
