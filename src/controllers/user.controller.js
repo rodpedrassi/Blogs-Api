@@ -1,0 +1,13 @@
+const { userService } = require('../services');
+const { mapError } = require('../utils/errorMap');
+
+const createUser = async (req, res) => {
+    const token = await userService.createUser(req.body);
+    const { type, message } = token;
+    if (type) return res.status(mapError(type)).json({ message });
+    return res.status(201).json(token);
+};
+
+module.exports = {
+    createUser,
+};
