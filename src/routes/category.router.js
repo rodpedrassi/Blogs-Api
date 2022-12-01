@@ -11,4 +11,8 @@ jwtValidade,
 checkCategory,
 categoryController.createCategory);
 
+router.get('/', 
+jwtValidade, 
+categoryController.findAllCategories);
+
 module.exports = router;

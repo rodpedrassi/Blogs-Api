@@ -3,9 +3,12 @@ const { categoryService } = require('../services');
 
 const createCategory = async (req, res) => {
     const { message } = await categoryService.createCategory(req.body);
-    // const { type, message } = category;
-    // if (type) return res.status(mapError(type)).json({ message });
     return res.status(201).json(message);
 };
 
-module.exports = { createCategory };
+const findAllCategories = async (req, res) => {
+    const categories = await categoryService.findAllCategories();
+    return res.status(200).json(categories);
+};
+
+module.exports = { createCategory, findAllCategories };

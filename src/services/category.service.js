@@ -5,4 +5,10 @@ const createCategory = async (category) => {
     return { type: '', message: newCategory.dataValues };
 };
 
-module.exports = { createCategory };
+const findAllCategories = async () => {
+    const data = await Category.findAll();
+    const categories = data.map(({ dataValues }) => dataValues);
+    return categories;
+};
+
+module.exports = { createCategory, findAllCategories };
